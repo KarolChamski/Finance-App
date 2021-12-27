@@ -6,12 +6,14 @@
         <div class="header__menu">
           <button class="header__menu-item">Wymień waluty</button>
           <button class="header__menu-item">Historia transakcji</button>
-          <button class="header__hamburger">X</button>
         </div>
       </div>
     </div>
   </div>
+
 </template>
+
+
 <style lang="scss" scoped>
 .header {
     width: 100%;
@@ -19,33 +21,33 @@
     background-color: rgb(112, 145, 182);
   &__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     color: rgb(255, 255, 255);
   }
 
   &__menu {
-    display: flex;
+      display: flex;
     &-item {
-      display: none;
+        display: none;
     }
   }
 
   &__title {
-    font-size: 24px;
+      font-size: 24px;
   }
 
   button {
-    margin: 0 1rem;
+      margin: 0 1rem;
     background: none;
     border: none;
     color: rgb(255, 255, 255);
   }
 }
 @media (min-width: 768px) {
-  .header {
-    &__hamburger {
-      display: none;
-    }
+    .header {
+        &__container{
+            justify-content: space-between;
+      }
     &__menu-item {
       display: block;
     }
