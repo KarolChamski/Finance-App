@@ -1,5 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <h2>{{$store.state.accountBalance}}</h2>
 </template>
 
 <script>
