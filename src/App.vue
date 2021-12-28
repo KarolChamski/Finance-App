@@ -1,15 +1,17 @@
 <template>
 <the-header></the-header>
   <h2>{{$store.state.accountBalance}}</h2>
-
+<menu-bar></menu-bar>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue'
+import TheHeader from './components/layout/TheHeader.vue';
+import MenuBar from './components/layout/MenuBar.vue';
 
 export default {
 components:{
-  TheHeader
+  TheHeader,
+  MenuBar
 }
 }
 </script>
@@ -17,6 +19,7 @@ components:{
 <style lang="scss">
 body{
   margin: 0;
+  min-height: 100vh;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

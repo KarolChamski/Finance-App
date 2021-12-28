@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 
 export default createStore ({
     state:{
-        accountBalance: 0
+        accountBalance: '$' + 1000
     },
 
 })
