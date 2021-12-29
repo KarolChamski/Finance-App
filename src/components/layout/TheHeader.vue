@@ -2,10 +2,10 @@
   <div class="header">
     <div class="wrapper">
       <div class="header__container">
-        <h1 class="header__title">FinanceApp</h1>
+        <h1 class="header__title"><router-link to="/home">FinanceApp</router-link></h1>
         <div class="header__menu">
-          <button class="header__menu-item">Wymień waluty</button>
-          <button class="header__menu-item">Historia transakcji</button>
+          <button class="header__menu-item"><router-link to="/exchange">Wymień waluty</router-link></button>
+          <button class="header__menu-item"><router-link to="/history">Historia Transakcji</router-link></button>
         </div>
       </div>
     </div>

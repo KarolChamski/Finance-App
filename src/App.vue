@@ -1,6 +1,6 @@
 <template>
 <the-header></the-header>
-  <h2>{{$store.state.accountBalance}}</h2>
+<router-view></router-view>
 <menu-bar></menu-bar>
 </template>
 
@@ -34,6 +34,10 @@ body{
   max-width: 1300px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+a{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 
