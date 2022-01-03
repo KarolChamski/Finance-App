@@ -19,7 +19,7 @@ export default createStore ({
     actions:{
         
 // action, that takes current exchange rate from API and calling basic exchange mutation
-        getCurrentRate({commit}){
+        exchangeCurrency({commit}){
             let rate = 0;
             return fetch ('https://api.vatcomply.com/rates?base=PLN')
             .then((response) => {
@@ -31,7 +31,26 @@ export default createStore ({
                 rate = data.rates.EUR
                 commit('exchange', rate)
             })
+        },
+
+
+
+        getCurrentRate(){
+            let rate = 0;
+            return fetch ('https://api.vatcomply.com/rates?base=PLN')
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+            })
+            .then((data) => {
+                rate = data.rates.EUR;
+                this.state.currentRate = rate
+            })
         }
+
+
+
 
     }
 

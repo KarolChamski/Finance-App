@@ -10,33 +10,59 @@
 
 <div class="exchange">
 
-    <select v-model="selectedCurrency">
+<div class="exchange__first-currency">
+    <select v-model="selectedFirstCurrency">
     <option disabled value="">Wybierz walutę</option>
     <option>PLN</option>
     <option>€</option>
     <option>$</option>
   </select>
-
-</div>
-    <button @click="exchange">Wymień waluty na €</button>
-
-
-
-    
+  <input class="exchange__input" type="text">
 </div>
 
+<img src="../../assets/UI/swap.png" alt="">
+
+
+<div class="exchange__second-currency">
+    <select v-model="selectedSecondCurrency">
+    <option disabled value="">Wybierz walutę</option>
+    <option>PLN</option>
+    <option>€</option>
+    <option>$</option>
+  </select>
+    <button @click="getRate">Sprawdź kurs</button>
+</div>
+
+<p>Obecny kurs:</p>
+<p>{{$store.state.currentRate}}</p>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
 </template>
 
 <script>
 export default{
     data(){
         return{
-            selectedCurrency: ''
+            selectedFirstCurrency: '',
+            selectedSecondCurrency: ''
+
         }
     },
     methods:{
         exchange(){
-             this.$store.dispatch('getCurrentRate')
+             this.$store.dispatch('exchangeCurrency')
+        },
+        getRate(){
+            this.$store.dispatch('getCurrentRate')
         }
     }
 }
