@@ -4,7 +4,7 @@ import { createStore } from 'vuex';
 export default createStore ({
     state:{
         accountBalancePLN: 1000,
-        accountBalanceEUR: 0,
+        accountBalanceEUR: 500,
         currentRate: '0'
     },
 
@@ -17,26 +17,10 @@ export default createStore ({
       },
 
     actions:{
-        
-// action, that takes current exchange rate from API and calling basic exchange mutation
-        exchangeCurrency({commit}){
+
+        getCurrentRate({state}, currency){
             let rate = 0;
-            return fetch ('https://api.vatcomply.com/rates?base=PLN')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                }
-            })
-            .then((data) => {
-                rate = data.rates.EUR
-                commit('exchange', rate)
-            })
-        },
-
-
-
-        getCurrentRate(){
-            let rate = 0;
+            console.log(currency);
             return fetch ('https://api.vatcomply.com/rates?base=PLN')
             .then((response) => {
                 if (response.ok) {
@@ -45,10 +29,24 @@ export default createStore ({
             })
             .then((data) => {
                 rate = data.rates.EUR;
-                this.state.currentRate = rate
+                state.currentRate = rate;
             })
-        }
-
+        },
+        
+        // action, that takes current exchange rate from API and calling basic exchange mutation
+                exchangeCurrency({commit}){
+                    let rate = 0;
+                    return fetch ('https://api.vatcomply.com/rates?base=PLN')
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json()
+                        }
+                    })
+                    .then((data) => {
+                        rate = data.rates.EUR
+                        commit('exchange', rate)
+                    })
+                },
 
 
 

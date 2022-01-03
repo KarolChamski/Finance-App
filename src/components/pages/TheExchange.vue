@@ -17,7 +17,7 @@
     <option>€</option>
     <option>$</option>
   </select>
-  <input class="exchange__input" type="text">
+  <input class="exchange__input" v-model="exchangeInput" type="text">
 </div>
 
 <img src="../../assets/UI/swap.png" alt="">
@@ -26,24 +26,22 @@
 <div class="exchange__second-currency">
     <select v-model="selectedSecondCurrency">
     <option disabled value="">Wybierz walutę</option>
-    <option>PLN</option>
-    <option>€</option>
-    <option>$</option>
+    <option value="PLN">PLN</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">$</option>
   </select>
     <button @click="getRate">Sprawdź kurs</button>
 </div>
 
+<p>Otrzymam:</p>
+<p>{{exchangeInput}} = </p>
+
 <p>Obecny kurs:</p>
 <p>{{$store.state.currentRate}}</p>
 
-
+<button>Akceptuj</button>
 
 </div>
-
-
-
-
-
 
 </div>
 </template>
@@ -53,8 +51,8 @@ export default{
     data(){
         return{
             selectedFirstCurrency: '',
-            selectedSecondCurrency: ''
-
+            selectedSecondCurrency: '',
+            exchangeInput: ''
         }
     },
     methods:{
@@ -62,7 +60,7 @@ export default{
              this.$store.dispatch('exchangeCurrency')
         },
         getRate(){
-            this.$store.dispatch('getCurrentRate')
+            this.$store.dispatch('getCurrentRate', this.selectedSecondCurrency)
         }
     }
 }
