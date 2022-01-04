@@ -19,9 +19,11 @@ export default createStore({
   actions: {
     // Action that gets data from  API and depends on selected value count current value
     getCurrentRate({ state }, currency) {
-        console.log(currency.selectedFirstCurrency);
       let rate = 0;
-      return fetch("https://api.vatcomply.com/rates?base=PLN")
+
+      const fetchLink = "https://api.vatcomply.com/rates?base=" + currency.selectedFirstCurrency;
+
+      return fetch(fetchLink)
         .then((response) => {
           if (response.ok) {
             return response.json();

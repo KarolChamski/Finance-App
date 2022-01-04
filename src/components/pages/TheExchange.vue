@@ -17,7 +17,7 @@
     <option value="EUR">EUR</option>
     <option value="USD">$</option>
   </select>
-  <input class="exchange__input" v-model="exchangeInput" type="text">
+  <input class="exchange__input" v-model="currency.exchangeInput" type="text">
 </div>
 
 <img src="../../assets/UI/swap.png" alt="">
@@ -34,7 +34,7 @@
 </div>
 
 <p>Otrzymam:</p>
-<p>{{exchangeInput}} = </p>
+<p>{{currency.exchangeInput}} = </p>
 
 <p>Obecny kurs:</p>
 <p>{{$store.state.currentRate}}</p>
@@ -50,11 +50,13 @@
 export default{
     data(){
         return{
-            exchangeInput: '',
+            
             // Created a currency object because its easier to put into action as payload
             currency: {
             selectedFirstCurrency: '',
             selectedSecondCurrency: '',
+            exchangeInput: '',
+
             }
 
         }
