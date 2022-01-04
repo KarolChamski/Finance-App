@@ -11,11 +11,11 @@
 <div class="exchange">
 
 <div class="exchange__first-currency">
-    <select v-model="selectedFirstCurrency">
+    <select v-model="currency.selectedFirstCurrency">
     <option disabled value="">Wybierz walutę</option>
-    <option>PLN</option>
-    <option>€</option>
-    <option>$</option>
+    <option value="PLN">PLN</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">$</option>
   </select>
   <input class="exchange__input" v-model="exchangeInput" type="text">
 </div>
@@ -24,7 +24,7 @@
 
 
 <div class="exchange__second-currency">
-    <select v-model="selectedSecondCurrency">
+    <select v-model="currency.selectedSecondCurrency">
     <option disabled value="">Wybierz walutę</option>
     <option value="PLN">PLN</option>
     <option value="EUR">EUR</option>
@@ -50,9 +50,13 @@
 export default{
     data(){
         return{
+            exchangeInput: '',
+            // Created a currency object because its easier to put into action as payload
+            currency: {
             selectedFirstCurrency: '',
             selectedSecondCurrency: '',
-            exchangeInput: ''
+            }
+
         }
     },
     methods:{
@@ -60,7 +64,7 @@ export default{
              this.$store.dispatch('exchangeCurrency')
         },
         getRate(){
-            this.$store.dispatch('getCurrentRate', this.selectedSecondCurrency)
+            this.$store.dispatch('getCurrentRate', this.currency)
         }
     }
 }
