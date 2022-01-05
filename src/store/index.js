@@ -4,8 +4,8 @@ export default createStore({
   state: {
     accountBalancePLN: 1000,
     accountBalanceEUR: 500,
-    currentRate: "0",
-    currentCurrency: "",
+    currentRate: 0,
+    exchangeResult: 0,
   },
 
   mutations: {
@@ -38,7 +38,12 @@ export default createStore({
             rate = data.rates.PLN;
           }
           state.currentRate = rate;
-        });
+        },
+        state.exchangeResult = currency.exchangeInput * state.currentRate 
+        
+        );
+
+
     },
 
     // action, that takes current exchange rate from API and calling basic exchange mutation

@@ -33,8 +33,8 @@
     <button @click="getRate">Sprawdź kurs</button>
 </div>
 
-<p>Otrzymam:</p>
-<p>{{currency.exchangeInput}} = </p>
+<p>Otrzymasz:</p>
+<p>{{currency.exchangeInput}} = {{$store.state.exchangeResult}} </p>
 
 <p>Obecny kurs:</p>
 <p>{{$store.state.currentRate}}</p>
