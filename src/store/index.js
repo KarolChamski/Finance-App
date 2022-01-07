@@ -4,15 +4,13 @@ export default createStore({
   state: {
     accountBalancePLN: 1000,
     accountBalanceEUR: 500,
+    accountBalanceUSD: 500,
     currentRate: 0,
     exchangeResult: 0,
   },
 
   mutations: {
-    exchange(state, rate) {
-      const result = state.accountBalancePLN * rate;
-      state.accountBalanceEUR = result;
-      console.log(result);
+    exchange() {
     },
   },
 
@@ -37,28 +35,43 @@ export default createStore({
           } else if (currency.selectedSecondCurrency == "PLN") {
             rate = data.rates.PLN;
           }
-          state.currentRate = rate;
+          state.currentRate = rate.toFixed(4);
+          // takes exchange input and multiply by current rate
+          state.exchangeResult = currency.exchangeInput * state.currentRate 
         },
-        state.exchangeResult = currency.exchangeInput * state.currentRate 
         
         );
-
-
     },
 
-    // action, that takes current exchange rate from API and calling basic exchange mutation
-    // exchangeCurrency({commit}){
-    //     let rate = 0;
-    //     return fetch ('https://api.vatcomply.com/rates?base=PLN')
-    //     .then((response) => {
-    //         if (response.ok) {
-    //             return response.json()
-    //         }
-    //     })
-    //     .then((data) => {
-    //         rate = data.rates.EUR
-    //         commit('exchange', rate)
-    //     })
-    // },
+    acceptExchange({state}, currency){
+     if(currency.selectedFirstCurrency == 'PLN' && currency.selectedSecondCurrency == 'EUR'){
+      state.accountBalancePLN -= currency.exchangeInput;
+      state.accountBalanceEUR += state.exchangeResult
+     } 
+    else if(currency.selectedFirstCurrency == 'PLN' && currency.selectedSecondCurrency == 'USD'){
+      state.accountBalancePLN -= currency.exchangeInput;
+      state.accountBalanceUSD += state.exchangeResult
+     } 
+    else if(currency.selectedFirstCurrency == 'EUR' && currency.selectedSecondCurrency == 'PLN'){
+      state.accountBalanceEUR -= currency.exchangeInput;
+      state.accountBalancePLN += state.exchangeResult
+     } 
+    else if(currency.selectedFirstCurrency == 'EUR' && currency.selectedSecondCurrency == 'USD'){
+      state.accountBalanceEUR -= currency.exchangeInput;
+      state.accountBalanceUSD += state.exchangeResult
+     } 
+    else if(currency.selectedFirstCurrency == 'USD' && currency.selectedSecondCurrency == 'PLN'){
+      state.accountBalanceUSD -= currency.exchangeInput;
+      state.accountBalancePLN += state.exchangeResult
+     } 
+    else if(currency.selectedFirstCurrency == 'USD' && currency.selectedSecondCurrency == 'EUR'){
+      state.accountBalanceUSD -= currency.exchangeInput;
+      state.accountBalanceEUR += state.exchangeResult
+     } 
+
+
+     
+    }
+
   },
 });
