@@ -99,12 +99,10 @@ export default createStore({
         secondCurrency: currency.selectedSecondCurrency,
         inputAmount: currency.exchangeInput,
         resultAmount: state.exchangeResult,
+        rateValue: state.currentRate
       };
 
       state.exchangeHistory.push(historyItem)
-
-
-      console.log(state.exchangeHistory);
 
     },
   },
