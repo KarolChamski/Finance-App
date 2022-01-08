@@ -64,18 +64,34 @@ export default {
         selectedSecondCurrency: "",
         exchangeInput: "",
       },
-      prediction: false
+      prediction: false,
+      currentAccount: 0
     };
   },
   methods: {
     getRate() {
       this.$store.dispatch("getCurrentRate", this.currency);
+      this.getCurrentAccount();
       this.prediction = true
     },
     acceptExchange(){
-      this.$store.dispatch("acceptExchange", this.currency);
+      if(this.currency.exchangeInput < this.currentAccount){
+        this.$store.dispatch("acceptExchange", this.currency);
+
+      }
+    },
+    // To validate before acceptation exchange sets currentAccount data to selected value - protection against overdraft
+    getCurrentAccount(){
+      if(this.currency.selectedFirstCurrency == 'PLN'){
+        this.currentAccount = this.$store.state.accountBalancePLN
+      } else if (this.currency.selectedFirstCurrency == 'EUR'){
+        this.currentAccount = this.$store.state.accountBalanceEUR
+      } else if (this.currency.selectedFirstCurrency == 'USD'){
+        this.currentAccount = this.$store.state.accountBalanceUSD
+      }
     }
   },
+
 };
 </script>
 

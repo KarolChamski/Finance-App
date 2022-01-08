@@ -59,7 +59,7 @@ export default createStore({
       ) {
         state.accountBalancePLN -= currency.exchangeInput;
         state.accountBalanceEUR += state.exchangeResult;
-        console.log(date);
+        
       } else if (
         currency.selectedFirstCurrency == "PLN" &&
         currency.selectedSecondCurrency == "USD"
