@@ -18,6 +18,7 @@ components:{
 
 <style lang="scss">
 body{
+  top: 0;
   margin: 0;
   min-height: 100vh;
 }
@@ -39,7 +40,9 @@ a{
   color: rgb(255, 255, 255);
   text-decoration: none;
 }
-
+.active{
+  border-bottom: 1px solid #ffffff;
+}
 
 
 </style>

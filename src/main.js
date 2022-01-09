@@ -12,7 +12,8 @@ const router = createRouter({
       { path: '/home', component: Home },
       { path: '/history', component: History },
       { path: '/exchange', component: Exchange }
-    ]
+    ],
+    linkActiveClass: "active",
   });
 
 const app = createApp(App)

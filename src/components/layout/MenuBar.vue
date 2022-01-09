@@ -3,17 +3,17 @@
     <button class="menu__item">
       <router-link to="/home"
         ><img class="menu__item-img" src="../../assets/UI/home.svg" alt="Powrót na stronę główną"
-      /></router-link>
+      /> <p class="menu__item-text">Home</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/exchange"
         ><img class="menu__item-img" src="../../assets/UI/repeat.svg" alt="Wymiana walut"
-      /></router-link>
+      /> <p class="menu__item-text">Exchange</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/history"
         ><img class="menu__item-img" src="../../assets/UI/history.svg" alt="Historia transakcji"
-      /></router-link>
+      /> <p class="menu__item-text">History</p> </router-link>
     </button>
   </div>
 </template>
@@ -33,6 +33,10 @@
     &-img {
       height: 34px;
       color: rgb(255, 255, 255);
+    }
+    &-text{
+      margin: 0;
+      padding: 0;
     }
   }
 }

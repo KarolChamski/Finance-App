@@ -1,5 +1,6 @@
-<template>
-
+<template>  
+  <div class="wrapper">
+    <div class="the-history">
   <history-item
     v-for="item in this.$store.state.exchangeHistory"
     :key="item.inputAmount"
@@ -21,6 +22,8 @@
     </template>
     
   </history-item>
+  </div>
+  </div>
 </template>
 
 <script>
@@ -34,3 +37,9 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.the-history{
+  display: block;
+  top: 0;
+}
+</style>

@@ -1,16 +1,20 @@
 <template>
   <div class="wrapper">
-    <div class="wallet">
-      <p class="wallet__title">Twój portfel</p>
+    <div class="the-exchange">
 
-      <p @click="getCurrentRate">{{ $store.state.accountBalancePLN + "zł" }}</p>
-      <p @click="getCurrentRate">{{ $store.state.accountBalanceEUR + "€" }}</p>
-      <p @click="getCurrentRate">{{ $store.state.accountBalanceUSD + "$" }}</p>
+    
+    <div class="wallet">
+      <p class="wallet__title">Current Balance</p>
+
+      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalancePLN + "zł" }}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalanceEUR + "€" }}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalanceUSD + "$" }}</p>
+
     </div>
 
     <div class="exchange">
-      <div class="exchange__first-currency">
-        <select v-model="currency.selectedFirstCurrency">
+      <div class="exchange__box">
+        <select class="exchange__select" v-model="currency.selectedFirstCurrency">
           <option disabled value="">Wybierz walutę</option>
           <option value="PLN">PLN</option>
           <option value="EUR">EUR</option>
@@ -25,14 +29,14 @@
 
       <img src="../../assets/UI/swap.png" alt="" />
 
-      <div class="exchange__second-currency">
-        <select v-model="currency.selectedSecondCurrency">
+      <div class="exchange__box">
+        <select class="exchange__select" v-model="currency.selectedSecondCurrency">
           <option disabled value="">Wybierz walutę</option>
           <option value="PLN">PLN</option>
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
         </select>
-        <button @click="getRate">Sprawdź kurs</button>
+        <button class="exchange__button" @click="getRate">Sprawdź kurs</button>
       </div>
 
     </div>
@@ -50,7 +54,8 @@
 
       <button @click="acceptExchange">Akceptuj</button>
     </div>
-    
+
+    </div>
   </div>
 </template>
 
@@ -72,12 +77,15 @@ export default {
     getRate() {
       this.$store.dispatch("getCurrentRate", this.currency);
       this.getCurrentAccount();
-      this.prediction = true
+      // Basic validation
+      if(this.currency.exchangeInput > 0 && this.currency.selectedSecondCurrency != '' && this.currency.selectedFirstCurrency != ''){
+        this.prediction = true
+      }
     },
     acceptExchange(){
       if(this.currency.exchangeInput < this.currentAccount){
         this.$store.dispatch("acceptExchange", this.currency);
-
+        this.prediction = false
       }
     },
     // To validate before acceptation exchange sets currentAccount data to selected value - protection against overdraft
@@ -96,6 +104,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.the-exchange{
+  display: block;
+}
+.exchange{
+  &__box{
+    display: flex;
+    justify-content: center;
+    left: 0;
+    height: 50px;
+  }
+  &__select{
+    width: 200px;
+    left: 0;
+  }
+  &__button{
+    width: 200px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+  }
+  &__input{
+    width: 200px;
+    left: 0;
+  }
+}
 .wallet {
   display: flex;
   flex-direction: column;
@@ -105,6 +137,9 @@ export default {
   &__money {
     display: flex;
     flex-direction: row;
+  }
+  &__currency{
+    margin: 0;
   }
 }
 </style>

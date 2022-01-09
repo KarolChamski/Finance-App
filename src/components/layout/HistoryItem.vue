@@ -23,8 +23,5 @@
 
 
 <style lang="scss" scoped>
-.item{
-    background-color: rgb(182, 165, 165);
-    margin: 1rem;
-}
+
 </style>
