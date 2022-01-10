@@ -1,13 +1,13 @@
 <template>
   <div class="header">
     <div class="wrapper">
-      <div class="header__container">
         <h1 class="header__title">Hello World</h1>
+      <div class="header__container">
         <div class="header__menu">
           <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/home.svg"
+                src="../../assets/UI/home.png"
                 alt="Powrót na stronę główną"
               />
             <router-link to="/home">
@@ -18,7 +18,7 @@
           <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/repeat.svg"
+                src="../../assets/UI/repeat.png"
                 alt="Wymień waluty"
               />
             <router-link to="/exchange">
@@ -29,7 +29,7 @@
           <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/history.svg"
+                src="../../assets/UI/history.png"
                 alt="Historia Transakcji"
               />
             <router-link to="/history">
@@ -45,7 +45,7 @@
 <style lang="scss" scoped>
 .header {
   display: none;
-  position: fixed;
+  position: relative;
   width: 300px;
   top: 0;
   left: 0;
@@ -67,6 +67,8 @@
 
   &__title {
     font-size: 24px;
+    color: #fff;
+    margin-top: 6rem;
   }
 
   button {
@@ -78,9 +80,17 @@
 }
 @media (min-width: 1024px) {
   .header {
-    display: block;
+    display: flex;
     &__menu-item {
       display: flex;
+      align-items: center;
+      padding: 2rem;
+      &-text{
+        margin: 0;
+      }
+      &-img{
+        margin-right: 2rem;
+      }
     }
   }
 }

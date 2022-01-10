@@ -2,17 +2,17 @@
   <div class="menu">
     <button class="menu__item">
       <router-link to="/home"
-        ><img class="menu__item-img" src="../../assets/UI/home.svg" alt="Powrót na stronę główną"
+        ><img class="menu__item-img" src="../../assets/UI/home.png" alt="Powrót na stronę główną"
       /> <p class="menu__item-text">Home</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/exchange"
-        ><img class="menu__item-img" src="../../assets/UI/repeat.svg" alt="Wymiana walut"
+        ><img class="menu__item-img" src="../../assets/UI/repeat.png" alt="Wymiana walut"
       /> <p class="menu__item-text">Exchange</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/history"
-        ><img class="menu__item-img" src="../../assets/UI/history.svg" alt="Historia transakcji"
+        ><img class="menu__item-img" src="../../assets/UI/history.png" alt="Historia transakcji"
       /> <p class="menu__item-text">History</p> </router-link>
     </button>
   </div>
@@ -26,12 +26,12 @@
   align-items: center;
   width: 100vw;
   bottom: 0;
-  background-color: rgb(112, 145, 182);
+  background-color: rgb(0, 0, 0);
   &__item {
     background: none;
     border: none;
+    height: 50px;
     &-img {
-      height: 34px;
       color: rgb(255, 255, 255);
     }
     &-text{
@@ -40,7 +40,7 @@
     }
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .menu {
     display: none;
   }

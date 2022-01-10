@@ -1,6 +1,8 @@
 <template>
+<div class="app">
 <the-header></the-header>
 <router-view></router-view>
+</div>
 <menu-bar></menu-bar>
 </template>
 
@@ -43,7 +45,9 @@ a{
 .active{
   border-bottom: 1px solid #ffffff;
 }
-
+.app{
+  display: flex;
+}
 
 </style>
 

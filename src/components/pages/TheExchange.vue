@@ -13,6 +13,7 @@
     </div>
 
     <div class="exchange">
+      <p class="exchange__title">Currency Exchange</p>
       <div class="exchange__box">
         <select class="exchange__select" v-model="currency.selectedFirstCurrency">
           <option disabled value="">Wybierz walutę</option>
@@ -27,7 +28,7 @@
         />
       </div>
 
-      <img src="../../assets/UI/swap.png" alt="" />
+      <img class="exchange__img" src="../../assets/UI/swap.png" alt="" />
 
       <div class="exchange__box">
         <select class="exchange__select" v-model="currency.selectedSecondCurrency">
@@ -42,17 +43,17 @@
     </div>
 
     <div class="prediction__box" v-if="prediction">
-      <p>Otrzymasz:</p>
-      <p>
-        {{ currency.exchangeInput }} {{ currency.selectedFirstCurrency }} =
-        {{ $store.state.exchangeResult }} {{ currency.selectedSecondCurrency }}
+      <p class="prediction__box-heading">Otrzymasz:</p>
+      <p class="prediction__box-text">
+        {{ currency.exchangeInput }} {{ currency.selectedFirstCurrency }} = 
+        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(2) }} {{ currency.selectedSecondCurrency }}</span> 
       </p>
-      <p>
+      <p class="prediction__box-rate">
         1 {{ currency.selectedFirstCurrency }} = {{ $store.state.currentRate }} {{currency.selectedSecondCurrency}}
       </p>
 
 
-      <button @click="acceptExchange">Akceptuj</button>
+      <button class="accept-button" @click="acceptExchange">Akceptuj</button>
     </div>
 
     </div>
@@ -106,26 +107,38 @@ export default {
 <style lang="scss" scoped>
 .the-exchange{
   display: block;
+
 }
 .exchange{
+  &__img{
+    margin: 1rem;
+  }
   &__box{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;  
     left: 0;
-    height: 50px;
+    height: 40px;
   }
   &__select{
-    width: 200px;
+    width: 120px;
     left: 0;
   }
   &__button{
-    width: 200px;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+    border: 0;
+    width: 100%;
+    margin-left: 1rem;
   }
   &__input{
-    width: 200px;
-    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-left: 1rem;
+  }
+  &__title{
+    font-weight: 600;
+    text-align: left;
   }
 }
 .wallet {
@@ -133,7 +146,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  &__title{
+    color: #ACA4A4;
+  }
   &__money {
     display: flex;
     flex-direction: row;
@@ -142,4 +157,34 @@ export default {
     margin: 0;
   }
 }
+.prediction{
+  &__box{
+    display: flex;
+    flex-direction: column;
+    
+    &-bold{
+      font-weight: 600;
+    }
+    &-text{
+      font-size: 24px;
+    }
+    &-heading{
+      font-size: 12px;
+      align-self: start;
+      color: #ACA4A4;
+    }
+    &-rate{
+      color: #ACA4A4;
+    }
+  }
+}
+.accept-button{
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  align-self: center;
+  width: 50%;
+  height: 50px;
+}
+
 </style>

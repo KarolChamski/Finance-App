@@ -17,8 +17,8 @@
 
     <template v-slot:secondCurrency>
       <img :src="require('../../../public/UI/' + item.secondCurrency + '.png')" alt="">
-      {{item.secondCurrency}} {{item.resultAmount}}
-      {{item.rateValue}}
+      {{item.secondCurrency}} {{item.resultAmount.toFixed(2)}}
+      <!-- {{item.rateValue}} -->
     </template>
     
   </history-item>
@@ -40,6 +40,9 @@ export default {
 <style lang="scss" scoped>
 .the-history{
   display: block;
+  position: relative;
   top: 0;
+  right: 0;
 }
+
 </style>
