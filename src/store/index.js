@@ -15,6 +15,17 @@ export default createStore({
       console.log(state.exchangeHistory);
     }
   },
+  getters: {
+    fixedPlnAccount: state => {
+      return state.accountBalancePLN.toFixed(2)
+    },
+    fixedEurAccount: state => {
+      return state.accountBalanceEUR.toFixed(2)
+    },
+    fixedUsdAccount: state => {
+      return state.accountBalanceUSD.toFixed(2)
+    },
+  },
 
   actions: {
     // Action that gets data from  API and depends on selected value count current value
@@ -59,8 +70,8 @@ export default createStore({
       ) {
         state.accountBalancePLN -= currency.exchangeInput;
         state.accountBalanceEUR += state.exchangeResult;
-        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2);
-        state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
+        // state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2);
+        // state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
 
         
       } else if (
@@ -69,40 +80,40 @@ export default createStore({
       ) {
         state.accountBalancePLN -= currency.exchangeInput;
         state.accountBalanceUSD += state.exchangeResult;
-        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2);
-        state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
+        // state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2);
+        // state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "EUR" &&
         currency.selectedSecondCurrency == "PLN"
       ) {
         state.accountBalanceEUR -= currency.exchangeInput;
         state.accountBalancePLN += state.exchangeResult;
-        state.accountBalancePLN = state.accountBalancePLN.toFixed(2);
-        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
+        // state.accountBalancePLN = state.accountBalancePLN.toFixed(2);
+        // state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "EUR" &&
         currency.selectedSecondCurrency == "USD"
       ) {
         state.accountBalanceEUR -= currency.exchangeInput;
         state.accountBalanceUSD += state.exchangeResult;
-        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2);
-        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
+        // state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2);
+        // state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "USD" &&
         currency.selectedSecondCurrency == "PLN"
       ) {
         state.accountBalanceUSD -= currency.exchangeInput;
         state.accountBalancePLN += state.exchangeResult;
-        state.accountBalancePLN = state.accountBalancePLN.toFixed(2);
-        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
+        // state.accountBalancePLN = state.accountBalancePLN.toFixed(2);
+        // state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "USD" &&
         currency.selectedSecondCurrency == "EUR"
       ) {
         state.accountBalanceUSD -= currency.exchangeInput;
         state.accountBalanceEUR += state.exchangeResult;
-        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2);
-        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
+        // state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2);
+        // state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
 
       }
       

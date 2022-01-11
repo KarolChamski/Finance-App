@@ -6,9 +6,9 @@
     <div class="wallet">
       <p class="wallet__title">Current Balance</p>
 
-      <p class="wallet__currency" @click="getCurrentRate">{{'PLN ' +  $store.state.accountBalancePLN}}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{'€ ' + $store.state.accountBalanceEUR}}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{'$ ' + $store.state.accountBalanceUSD}}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'PLN ' +  $store.getters.fixedPlnAccount}}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'€ ' + $store.getters.fixedEurAccount}}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'$ ' + $store.getters.fixedUsdAccount}}</p>
 
     </div>
 

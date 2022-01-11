@@ -15,7 +15,7 @@
         </h2>
       </div>
 
-      <div class="home__history">
+      <div class="home__history" v-if="$store.state.exchangeHistory.length > 0">
           <div class="home__history-header">
               <p class="home__history-header--title">Transaction history</p>
               <router-link class="home__history-header--link" to="/history">See All</router-link>
