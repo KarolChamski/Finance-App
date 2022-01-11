@@ -9,7 +9,6 @@
       {{item.date}}
     </template>
 
-
     <template v-slot:firstCurrency>
       <img :src="require('../../../public/UI/' + item.firstCurrency + '.png')" alt="">
       {{item.firstCurrency}} {{item.inputAmount}}

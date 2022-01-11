@@ -2,9 +2,9 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    accountBalancePLN: 1000,
-    accountBalanceEUR: 500,
-    accountBalanceUSD: 500,
+    accountBalancePLN: 1000.00,
+    accountBalanceEUR: 500.00,
+    accountBalanceUSD: 500.00,
     currentRate: 0,
     exchangeResult: 0,
     exchangeHistory: []
@@ -39,7 +39,7 @@ export default createStore({
           } else if (currency.selectedSecondCurrency == "PLN") {
             rate = data.rates.PLN;
           }
-          state.currentRate = rate.toFixed(4);
+          state.currentRate = rate.toFixed(2);
           // takes exchange input and multiply by current rate
           state.exchangeResult = currency.exchangeInput * state.currentRate;
         });
@@ -59,6 +59,7 @@ export default createStore({
       ) {
         state.accountBalancePLN -= currency.exchangeInput;
         state.accountBalanceEUR += state.exchangeResult;
+        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
         
       } else if (
         currency.selectedFirstCurrency == "PLN" &&
@@ -66,30 +67,36 @@ export default createStore({
       ) {
         state.accountBalancePLN -= currency.exchangeInput;
         state.accountBalanceUSD += state.exchangeResult;
+        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "EUR" &&
         currency.selectedSecondCurrency == "PLN"
       ) {
         state.accountBalanceEUR -= currency.exchangeInput;
         state.accountBalancePLN += state.exchangeResult;
+        state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "EUR" &&
         currency.selectedSecondCurrency == "USD"
       ) {
         state.accountBalanceEUR -= currency.exchangeInput;
         state.accountBalanceUSD += state.exchangeResult;
+        state.accountBalanceUSD = state.accountBalanceUSD.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "USD" &&
         currency.selectedSecondCurrency == "PLN"
       ) {
         state.accountBalanceUSD -= currency.exchangeInput;
         state.accountBalancePLN += state.exchangeResult;
+        state.accountBalancePLN = state.accountBalancePLN.toFixed(2)
       } else if (
         currency.selectedFirstCurrency == "USD" &&
         currency.selectedSecondCurrency == "EUR"
       ) {
         state.accountBalanceUSD -= currency.exchangeInput;
         state.accountBalanceEUR += state.exchangeResult;
+        state.accountBalanceEUR = state.accountBalanceEUR.toFixed(2)
+
       }
       
       // creating history item - going to push into exchangeHistory array
@@ -102,7 +109,7 @@ export default createStore({
         rateValue: state.currentRate
       };
 
-      state.exchangeHistory.push(historyItem)
+      state.exchangeHistory.unshift(historyItem)
 
     },
   },

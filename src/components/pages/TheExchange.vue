@@ -6,9 +6,9 @@
     <div class="wallet">
       <p class="wallet__title">Current Balance</p>
 
-      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalancePLN + "zł" }}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalanceEUR + "€" }}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{ $store.state.accountBalanceUSD + "$" }}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'PLN ' +  $store.state.accountBalancePLN}}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'€ ' + $store.state.accountBalanceEUR}}</p>
+      <p class="wallet__currency" @click="getCurrentRate">{{'$ ' + $store.state.accountBalanceUSD}}</p>
 
     </div>
 
@@ -46,7 +46,7 @@
       <p class="prediction__box-heading">Otrzymasz:</p>
       <p class="prediction__box-text">
         {{ currency.exchangeInput }} {{ currency.selectedFirstCurrency }} = 
-        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(2) }} {{ currency.selectedSecondCurrency }}</span> 
+        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(3) }} {{ currency.selectedSecondCurrency }}</span> 
       </p>
       <p class="prediction__box-rate">
         1 {{ currency.selectedFirstCurrency }} = {{ $store.state.currentRate }} {{currency.selectedSecondCurrency}}
@@ -145,7 +145,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  
   &__title{
     color: #ACA4A4;
   }
@@ -155,6 +156,9 @@ export default {
   }
   &__currency{
     margin: 0;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 1px;
   }
 }
 .prediction{
