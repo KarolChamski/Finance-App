@@ -25,6 +25,8 @@
           class="exchange__input"
           v-model="currency.exchangeInput"
           type="number"
+          step="any"
+          min="5"
         />
       </div>
 
@@ -45,7 +47,7 @@
     <div class="prediction__box" v-if="prediction">
       <p class="prediction__box-heading">Otrzymasz:</p>
       <p class="prediction__box-text">
-        {{ currency.exchangeInput }} {{ currency.selectedFirstCurrency }} = 
+        {{ currency.exchangeInput.toFixed(0) }} {{ currency.selectedFirstCurrency }} = 
         <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(3) }} {{ currency.selectedSecondCurrency }}</span> 
       </p>
       <p class="prediction__box-rate">

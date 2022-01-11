@@ -27,6 +27,9 @@
 <style lang="scss" scoped>
   .history-date{
     display: flex;
+    font-size: 12px;
+    color: #949292;
+    margin-top: 1rem;
   }
 main{
   display: flex;
