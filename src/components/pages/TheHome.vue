@@ -3,24 +3,36 @@
     <div class="home">
       <p class="home__title">Your wallet</p>
       <div class="home__wallet">
-        <div class="home__wallet-title">Current Balance</div>
+        <div class="home__wallet-title">
+          <p>Current Balance</p>
+          <img src="../../assets/UI/mastercard_logo.png" alt="" />
+        </div>
         <h2 class="home__wallet-balance" @click="getCurrentRate">
-          {{ "PLN " + $store.state.accountBalancePLN }}
+          {{ "PLN " + $store.getters.fixedPlnAccount }}
         </h2>
         <h2 class="home__wallet-balance" @click="getCurrentRate">
-          {{ "€ " + $store.state.accountBalanceEUR }}
+          {{ "€ " + $store.getters.fixedEurAccount }}
         </h2>
         <h2 class="home__wallet-balance" @click="getCurrentRate">
-          {{ "$ " + $store.state.accountBalanceUSD }}
+          {{ "$ " + $store.getters.fixedUsdAccount }}
         </h2>
       </div>
 
-      <div class="home__history" v-if="$store.state.exchangeHistory.length > 0">
-          <div class="home__history-header">
-              <p class="home__history-header--title">Transaction history</p>
-              <router-link class="home__history-header--link" to="/history">See All</router-link>
-          </div>
-        <history-item
+
+      <div class="home__history" >
+        <div class="home__history-header">
+          <p class="home__history-header--title">Transaction history</p>
+          <router-link class="home__history-header--link" v-if="$store.state.exchangeHistory.length > 0" to="/history"
+            >See All</router-link
+          >
+        </div>
+
+        <p class="home__history--text" v-if="$store.state.exchangeHistory.length == 0">It looks like you don't have any transaction...</p>
+
+
+
+        <div class="home__history-box" v-if="$store.state.exchangeHistory.length > 0">
+        <history-item 
           v-for="item in this.$store.state.exchangeHistory.slice(0, 3)"
           :key="item.inputAmount"
         >
@@ -49,6 +61,8 @@
             <!-- {{item.rateValue}} -->
           </template>
         </history-item>
+        </div>
+
       </div>
     </div>
   </div>
@@ -58,17 +72,19 @@
 .home {
   &__title {
     text-align: left;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 600;
   }
   &__wallet {
     width: 300px;
-    background: rgb(240,65,65);
-background: linear-gradient(45deg, rgba(240,65,65,1) 0%, rgba(196,80,141,1) 50%, rgba(113,85,121,1) 100%);
-    border-radius: 10px;
-    padding: 0.8rem 1.5rem;
+    background: rgb(140,57,36);
+    background: linear-gradient(180deg, rgba(140,57,36,1) 0%, rgba(210,56,56,1) 50%, rgba(125,66,66,1) 100%);
+    border-radius: 20px;
+    padding: 0.8rem 4rem;
     &-title {
       color: #aca4a4;
-      text-align: left;
+      display: flex;
+      justify-content: space-between;
     }
     &-balance {
       color: rgb(255, 255, 255);
@@ -76,23 +92,27 @@ background: linear-gradient(45deg, rgba(240,65,65,1) 0%, rgba(196,80,141,1) 50%,
       text-align: left;
     }
   }
-  &__history{
-      &-header{
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          &--link{
-              color: #000;
-          }
+  &__history {
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &--link {
+        color: #000;
       }
+      &--title{
+            font-size: 20px;
+    font-weight: 600;
+      }
+    }
   }
 }
 </style>
 <script>
 import HistoryItem from "../layout/HistoryItem.vue";
-export default{
-      components: {
+export default {
+  components: {
     HistoryItem,
   },
-}
+};
 </script>

@@ -26,7 +26,7 @@
           v-model="currency.exchangeInput"
           type="number"
           step="any"
-          min="5"
+          min="1"
         />
       </div>
 
