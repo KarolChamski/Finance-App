@@ -15,7 +15,7 @@
     <div class="exchange">
       <p class="exchange__title">Currency Exchange</p>
       <div class="exchange__box">
-        <select class="exchange__select" v-model="currency.selectedFirstCurrency">
+        <select @click="hidePrediction" class="exchange__select" v-model="currency.selectedFirstCurrency">
           <option disabled value="">Wybierz walutę</option>
           <option value="PLN">PLN</option>
           <option value="EUR">EUR</option>
@@ -24,16 +24,17 @@
         <input
           class="exchange__input"
           v-model="currency.exchangeInput"
-          type="number"
           step="any"
+          type="number"
           min="1"
+          @click="selectClick"
         />
       </div>
 
       <img class="exchange__img" src="../../assets/UI/swap.png" alt="" />
 
       <div class="exchange__box">
-        <select class="exchange__select" v-model="currency.selectedSecondCurrency">
+        <select @click="hidePrediction" class="exchange__select" v-model="currency.selectedSecondCurrency">
           <option disabled value="">Wybierz walutę</option>
           <option value="PLN">PLN</option>
           <option value="EUR">EUR</option>
@@ -43,12 +44,16 @@
       </div>
 
     </div>
+    <p class="exchange__error" v-if="error1">You have to choose both currency</p>
+    <p class="exchange__error" v-if="error2">You have to fill empty amount input</p>
+
+    
 
     <div class="prediction__box" v-if="prediction">
       <p class="prediction__box-heading">Otrzymasz:</p>
       <p class="prediction__box-text">
         {{ currency.exchangeInput.toFixed(0) }} {{ currency.selectedFirstCurrency }} = 
-        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(3) }} {{ currency.selectedSecondCurrency }}</span> 
+        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(2) }} {{ currency.selectedSecondCurrency }}</span> 
       </p>
       <p class="prediction__box-rate">
         1 {{ currency.selectedFirstCurrency }} = {{ $store.state.currentRate }} {{currency.selectedSecondCurrency}}
@@ -70,25 +75,48 @@ export default {
       currency: {
         selectedFirstCurrency: "",
         selectedSecondCurrency: "",
-        exchangeInput: "",
+        exchangeInput: null,
       },
+      error1: false,
+      error2: false,
       prediction: false,
       currentAccount: 0
     };
   },
   methods: {
+    selectClick(){
+      this.currency.exchangeInput = null;
+      this.prediction = false;
+      this.$store.commit('resetExchange')
+    },
     getRate() {
       this.$store.dispatch("getCurrentRate", this.currency);
       this.getCurrentAccount();
-      // Basic validation
-      if(this.currency.exchangeInput > 0 && this.currency.selectedSecondCurrency != '' && this.currency.selectedFirstCurrency != ''){
-        this.prediction = true
-      }
+      // Validation
+          if(this.currency.selectedSecondCurrency == '' || this.currency.selectedFirstCurrency == ''){
+            this.error1 = true;
+            this.error2 = false;            
+          }
+           else if(this.currency.exchangeInput == null ){
+            this.error1 = false;
+             this.error2 = true;
+           }
+
+        if(this.currency.exchangeInput !== null && this.currency.selectedSecondCurrency != '' && this.currency.selectedFirstCurrency != ''){
+          this.prediction = true;
+          this.error1 = false;
+          this.error2 = false;
+        }
+
+    },
+    hidePrediction(){
+      this.prediction = false
     },
     acceptExchange(){
       if(this.currency.exchangeInput < this.currentAccount){
         this.$store.dispatch("acceptExchange", this.currency);
-        this.prediction = false
+        this.prediction = false;
+        this.currency.exchangeInput = null;
       }
     },
     // To validate before acceptation exchange sets currentAccount data to selected value - protection against overdraft

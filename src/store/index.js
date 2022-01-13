@@ -11,8 +11,9 @@ export default createStore({
   },
 
   mutations: {
-    getHistory(state){
-      console.log(state.exchangeHistory);
+    resetExchange ({state}) {
+    state.currentRate = 0,
+    state.exchangeResult = 0
     }
   },
   getters: {

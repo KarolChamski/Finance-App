@@ -36,30 +36,30 @@
           v-for="item in this.$store.state.exchangeHistory.slice(0, 3)"
           :key="item.inputAmount"
         >
-          <template v-slot:date>
-            {{ item.date }}
-          </template>
+         <template v-slot:date>
+      {{item.date}}
+    </template>
 
-          <template v-slot:firstCurrency>
-            <img
-              :src="
-                require('../../../public/UI/' + item.firstCurrency + '.png')
-              "
-              alt=""
-            />
-            {{ item.firstCurrency }} {{ item.inputAmount }}
-          </template>
+    <template v-slot:firstCurrencyImage>
+    <img class="dupa" :src="require('../../../public/UI/' + item.firstCurrency + '.png')" alt="">
+    </template>
+    <template v-slot:firstCurrencyValue>
+    {{item.inputAmount}}
+    </template>
+    <template v-slot:firstCurrency>
+      {{item.firstCurrency}} 
+    </template>
 
-          <template v-slot:secondCurrency>
-            <img
-              :src="
-                require('../../../public/UI/' + item.secondCurrency + '.png')
-              "
-              alt=""
-            />
-            {{ item.secondCurrency }} {{ item.resultAmount.toFixed(2) }}
-            <!-- {{item.rateValue}} -->
-          </template>
+
+    <template v-slot:secondCurrencyImage>
+    <img :src="require('../../../public/UI/' + item.secondCurrency + '.png')" alt="">
+    </template>
+    <template v-slot:secondCurrencyValue>
+    {{item.resultAmount.toFixed(2)}}
+    </template>
+    <template v-slot:secondCurrency>
+      {{item.secondCurrency}}
+    </template>
         </history-item>
         </div>
 
@@ -76,11 +76,11 @@
     font-weight: 600;
   }
   &__wallet {
-    width: 300px;
+    
     background: rgb(140,57,36);
     background: linear-gradient(180deg, rgba(140,57,36,1) 0%, rgba(210,56,56,1) 50%, rgba(125,66,66,1) 100%);
     border-radius: 20px;
-    padding: 0.8rem 4rem;
+    padding: 0.2rem 4rem;
     &-title {
       color: #aca4a4;
       display: flex;
@@ -93,6 +93,7 @@
     }
   }
   &__history {
+    margin-bottom: 60px;
     &-header {
       display: flex;
       align-items: center;
@@ -106,6 +107,15 @@
       }
     }
   }
+}
+
+@media (min-width: 768px){
+.home {
+  &__wallet {
+    width: 300px;
+    padding: 0.8rem 4rem;
+}
+}
 }
 </style>
 <script>
