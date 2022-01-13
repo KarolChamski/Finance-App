@@ -46,6 +46,8 @@
     </div>
     <p class="exchange__error" v-if="error1">You have to choose both currency</p>
     <p class="exchange__error" v-if="error2">You have to fill empty amount input</p>
+    <p class="exchange__error" v-if="error3">You don't have enough money to make an exchange</p>
+    
 
     
 
@@ -79,6 +81,7 @@ export default {
       },
       error1: false,
       error2: false,
+      error3: false,
       prediction: false,
       currentAccount: 0
     };
@@ -87,7 +90,8 @@ export default {
     selectClick(){
       this.currency.exchangeInput = null;
       this.prediction = false;
-      this.$store.commit('resetExchange')
+      this.$store.commit('resetExchange');
+      this.error3 = false
     },
     getRate() {
       this.$store.dispatch("getCurrentRate", this.currency);
@@ -110,13 +114,17 @@ export default {
 
     },
     hidePrediction(){
-      this.prediction = false
+      this.prediction = false;
+      this.error3 = false
     },
     acceptExchange(){
-      if(this.currency.exchangeInput < this.currentAccount){
+      if(this.currency.exchangeInput <= this.currentAccount){
         this.$store.dispatch("acceptExchange", this.currency);
         this.prediction = false;
         this.currency.exchangeInput = null;
+      }
+      else if (this.currency.exchangeInput > this.currentAccount){
+        this.error3 = true
       }
     },
     // To validate before acceptation exchange sets currentAccount data to selected value - protection against overdraft
@@ -128,6 +136,7 @@ export default {
       } else if (this.currency.selectedFirstCurrency == 'USD'){
         this.currentAccount = this.$store.state.accountBalanceUSD
       }
+
     }
   },
 
@@ -137,7 +146,6 @@ export default {
 <style lang="scss" scoped>
 .the-exchange{
   display: block;
-
 }
 .exchange{
   &__img{
@@ -169,6 +177,9 @@ export default {
   &__title{
     font-weight: 600;
     text-align: left;
+  }
+  &__error{
+    color: rgb(255, 0, 0);
   }
 }
 .wallet {
