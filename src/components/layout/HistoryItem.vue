@@ -12,7 +12,7 @@
   <main>
     <div class="item">
       <div class="item__image">
-        <slot class="item__image" name="firstCurrencyImage"></slot>
+        <slot name="firstCurrencyImage"></slot> 
       </div>
 
       <p class="item__value">
@@ -65,6 +65,11 @@ main {
   align-items: center;
   &__value {
     font-weight: 600;
+    margin-right: 0.2rem;
+
+  }
+  &__image{
+    margin-right: 0.6rem;
   }
 
 }

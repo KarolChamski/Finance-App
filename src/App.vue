@@ -42,9 +42,9 @@ a{
   color: rgb(255, 255, 255);
   text-decoration: none;
 }
-.active{
-  border-bottom: 1px solid #ffffff;
-}
+  .active{
+    font-weight: 600;
+  }
 .app{
   display: flex;
 }
@@ -57,6 +57,12 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+@media (min-width: 1024px){
+    .active{
+      border-bottom: 1px solid #ffffff;
+      font-weight: normal;
+  }
+}
 </style>
 
 
