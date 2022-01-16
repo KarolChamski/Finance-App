@@ -2,6 +2,7 @@
   <div class="wrapper">
     <div class="the-history">
       <h2 class="the-history__title">Transaction History</h2>
+      <p v-if="$store.state.exchangeHistory.length == 0" class="the-history__empty">Make an exchange to see your transaction history here!</p>
   <history-item
     v-for="item in this.$store.state.exchangeHistory"
     :key="item.inputAmount"
@@ -58,6 +59,10 @@ export default {
     text-align: left;
     font-size: 20px;
     font-weight: 600;
+  }
+  &__empty{
+    text-align: left;
+
   }
 }
 

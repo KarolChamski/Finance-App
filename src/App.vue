@@ -44,6 +44,7 @@ a{
 }
   .active{
     font-weight: 600;
+    color: rgb(226, 115, 46);
   }
 .app{
   display: flex;
@@ -59,7 +60,7 @@ input::-webkit-inner-spin-button {
 
 @media (min-width: 1024px){
     .active{
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid rgb(226, 115, 46);
       font-weight: normal;
   }
 }

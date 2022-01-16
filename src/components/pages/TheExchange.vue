@@ -1,70 +1,90 @@
 <template>
   <div class="wrapper">
     <div class="the-exchange">
+      <div class="wallet">
+        <p class="wallet__title">Current Balance</p>
 
-    
-    <div class="wallet">
-      <p class="wallet__title">Current Balance</p>
-
-      <p class="wallet__currency" @click="getCurrentRate">{{'PLN ' +  $store.getters.fixedPlnAccount}}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{'€ ' + $store.getters.fixedEurAccount}}</p>
-      <p class="wallet__currency" @click="getCurrentRate">{{'$ ' + $store.getters.fixedUsdAccount}}</p>
-
-    </div>
-
-    <div class="exchange">
-      <p class="exchange__title">Currency Exchange</p>
-      <div class="exchange__box">
-        <select @click="hidePrediction" class="exchange__select" v-model="currency.selectedFirstCurrency">
-          <option disabled value="">Wybierz walutę</option>
-          <option value="PLN">PLN</option>
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
-        </select>
-        <input
-          class="exchange__input"
-          v-model="currency.exchangeInput"
-          step="any"
-          type="number"
-          min="1"
-          @click="selectClick"
-        />
+        <p class="wallet__currency" @click="getCurrentRate">
+          {{ "PLN " + $store.getters.fixedPlnAccount }}
+        </p>
+        <p class="wallet__currency" @click="getCurrentRate">
+          {{ "€ " + $store.getters.fixedEurAccount }}
+        </p>
+        <p class="wallet__currency" @click="getCurrentRate">
+          {{ "$ " + $store.getters.fixedUsdAccount }}
+        </p>
       </div>
 
-      <img class="exchange__img" src="../../assets/UI/swap.png" alt="" />
+      <div class="exchange">
+        <p class="exchange__title">Currency Exchange</p>
+        <div class="exchange__box">
+          <select
+            @click="hidePrediction"
+            class="exchange__select"
+            v-model="currency.selectedFirstCurrency"
+          >
+            <option disabled value="">Select a currency</option>
+            <option value="PLN">PLN</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+          <input
+            class="exchange__input"
+            v-model="currency.exchangeInput"
+            step="any"
+            type="number"
+            min="1"
+            max="999999999"
+            @click="selectClick"
+          />
+        </div>
 
-      <div class="exchange__box">
-        <select @click="hidePrediction" class="exchange__select" v-model="currency.selectedSecondCurrency">
-          <option disabled value="">Wybierz walutę</option>
-          <option value="PLN">PLN</option>
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
-        </select>
-        <button class="exchange__button" @click="getRate">Sprawdź kurs</button>
+        <img class="exchange__img" src="../../assets/UI/swap.png" alt="" />
+
+        <div class="exchange__box">
+          <select
+            @click="hidePrediction"
+            class="exchange__select"
+            v-model="currency.selectedSecondCurrency"
+          >
+            <option disabled value="">Select a currency</option>
+            <option value="PLN">PLN</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+          <button class="exchange__button" @click="getRate">Check rate</button>
+        </div>
       </div>
-
-    </div>
-    <p class="exchange__error" v-if="error1">You have to choose both currency</p>
-    <p class="exchange__error" v-if="error2">You have to fill empty amount input</p>
-    <p class="exchange__error" v-if="error3">You don't have enough money to make an exchange</p>
-    
-
-    
-
-    <div class="prediction__box" v-if="prediction">
-      <p class="prediction__box-heading">Otrzymasz:</p>
-      <p class="prediction__box-text">
-        {{ currency.exchangeInput.toFixed(0) }} {{ currency.selectedFirstCurrency }} = 
-        <span class="prediction__box-bold">{{ $store.state.exchangeResult.toFixed(2) }} {{ currency.selectedSecondCurrency }}</span> 
+      <p class="exchange__error" v-if="error1">
+        You have to choose both currency
       </p>
-      <p class="prediction__box-rate">
-        1 {{ currency.selectedFirstCurrency }} = {{ $store.state.currentRate }} {{currency.selectedSecondCurrency}}
+      <p class="exchange__error" v-if="error2">
+        You have to fill empty amount input
+      </p>
+      <p class="exchange__error" v-if="error3">
+        You don't have enough money to make an exchange
+      </p>
+      <p class="exchange__error" v-if="error4">
+        Selected currencies are the same
       </p>
 
+      <div class="prediction__box" v-if="prediction">
+        <p class="prediction__box-heading">Otrzymasz:</p>
+        <p class="prediction__box-text">
+          {{ currency.exchangeInput.toFixed(0) }}
+          {{ currency.selectedFirstCurrency }} =
+          <span class="prediction__box-bold"
+            >{{ $store.state.exchangeResult.toFixed(2) }}
+            {{ currency.selectedSecondCurrency }}</span
+          >
+        </p>
+        <p class="prediction__box-rate">
+          1 {{ currency.selectedFirstCurrency }} =
+          {{ $store.state.currentRate }} {{ currency.selectedSecondCurrency }}
+        </p>
 
-      <button class="accept-button" @click="acceptExchange">Akceptuj</button>
-    </div>
-
+        <button class="accept-button" @click="acceptExchange">Akceptuj</button>
+      </div>
     </div>
   </div>
 </template>
@@ -82,103 +102,117 @@ export default {
       error1: false,
       error2: false,
       error3: false,
+      error4: false,
+      selectedError: false,
       prediction: false,
-      currentAccount: 0
+      currentAccount: 0,
     };
   },
   methods: {
-    selectClick(){
+    selectClick() {
       this.currency.exchangeInput = null;
       this.prediction = false;
-      this.$store.commit('resetExchange');
-      this.error3 = false
+      this.$store.commit("resetExchange");
+      this.error3 = false;
     },
     getRate() {
       this.$store.dispatch("getCurrentRate", this.currency);
       this.getCurrentAccount();
       // Validation
-          if(this.currency.selectedSecondCurrency == '' || this.currency.selectedFirstCurrency == ''){
-            this.error1 = true;
-            this.error2 = false;            
-          }
-           else if(this.currency.exchangeInput == null ){
-            this.error1 = false;
-             this.error2 = true;
-           }
+      if (
+        this.currency.selectedSecondCurrency == "" ||
+        this.currency.selectedFirstCurrency == ""
+      ) {
+        this.error1 = true;
+        this.error2 = false;
+      } else if (this.currency.exchangeInput == null) {
+        this.error1 = false;
+        this.error2 = true;
+      } else if (
+        this.currency.selectedFirstCurrency ==
+        this.currency.selectedSecondCurrency
+      ) {
+        this.error4 = true;
+        this.error1 = false;
+        this.error2 = false;
+      }
 
-        if(this.currency.exchangeInput !== null && this.currency.selectedSecondCurrency != '' && this.currency.selectedFirstCurrency != ''){
-          this.prediction = true;
-          this.error1 = false;
-          this.error2 = false;
-        }
-
+      if (
+        this.currency.exchangeInput !== null &&
+        this.currency.selectedSecondCurrency !== "" &&
+        this.currency.selectedFirstCurrency !== "" &&
+        this.currency.selectedFirstCurrency !==
+          this.currency.selectedSecondCurrency
+      ) {
+        this.prediction = true;
+        this.error1 = false;
+        this.error2 = false;
+        this.error4 = false;
+      }
     },
-    hidePrediction(){
+    hidePrediction() {
       this.prediction = false;
-      this.error3 = false
+      this.error3 = false;
     },
-    acceptExchange(){
-      if(this.currency.exchangeInput <= this.currentAccount){
+    acceptExchange() {
+      if (this.currency.exchangeInput <= this.currentAccount) {
         this.$store.dispatch("acceptExchange", this.currency);
         this.prediction = false;
         this.currency.exchangeInput = null;
-      }
-      else if (this.currency.exchangeInput > this.currentAccount){
-        this.error3 = true
+      } else if (this.currency.exchangeInput > this.currentAccount) {
+        this.error3 = true;
       }
     },
     // To validate before acceptation exchange sets currentAccount data to selected value - protection against overdraft
-    getCurrentAccount(){
-      if(this.currency.selectedFirstCurrency == 'PLN'){
-        this.currentAccount = this.$store.state.accountBalancePLN
-      } else if (this.currency.selectedFirstCurrency == 'EUR'){
-        this.currentAccount = this.$store.state.accountBalanceEUR
-      } else if (this.currency.selectedFirstCurrency == 'USD'){
-        this.currentAccount = this.$store.state.accountBalanceUSD
+    getCurrentAccount() {
+      if (this.currency.selectedFirstCurrency == "PLN") {
+        this.currentAccount = this.$store.state.accountBalancePLN;
+      } else if (this.currency.selectedFirstCurrency == "EUR") {
+        this.currentAccount = this.$store.state.accountBalanceEUR;
+      } else if (this.currency.selectedFirstCurrency == "USD") {
+        this.currentAccount = this.$store.state.accountBalanceUSD;
       }
-
-    }
+    },
   },
-
 };
 </script>
 
 <style lang="scss" scoped>
-.the-exchange{
+.the-exchange {
   display: block;
 }
-.exchange{
-  &__img{
+.exchange {
+  &__img {
     margin: 1rem;
   }
-  &__box{
+  &__box {
     display: flex;
-    justify-content: space-around;  
+    justify-content: space-around;
     left: 0;
     height: 40px;
   }
-  &__select{
+  &__select {
     width: 120px;
     left: 0;
   }
-  &__button{
+  &__button {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border: 0;
     width: 100%;
     margin-left: 1rem;
   }
-  &__input{
+  &__input {
     margin: 0;
     padding: 0;
     width: 100%;
     margin-left: 1rem;
   }
-  &__title{
+  &__title {
     font-weight: 600;
     text-align: left;
   }
-  &__error{
+  &__error {
     color: rgb(255, 0, 0);
   }
 }
@@ -187,43 +221,43 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  
-  &__title{
-    color: #ACA4A4;
+
+  &__title {
+    color: #aca4a4;
   }
   &__money {
     display: flex;
     flex-direction: row;
   }
-  &__currency{
+  &__currency {
     margin: 0;
     font-weight: 600;
     font-size: 24px;
     letter-spacing: 1px;
   }
 }
-.prediction{
-  &__box{
+.prediction {
+  &__box {
     display: flex;
     flex-direction: column;
-    
-    &-bold{
+
+    &-bold {
       font-weight: 600;
     }
-    &-text{
+    &-text {
       font-size: 24px;
     }
-    &-heading{
+    &-heading {
       font-size: 12px;
       align-self: start;
-      color: #ACA4A4;
+      color: #aca4a4;
     }
-    &-rate{
-      color: #ACA4A4;
+    &-rate {
+      color: #aca4a4;
     }
   }
 }
-.accept-button{
+.accept-button {
   border: 1px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
@@ -231,5 +265,4 @@ export default {
   width: 50%;
   height: 50px;
 }
-
 </style>

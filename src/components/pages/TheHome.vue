@@ -18,51 +18,68 @@
         </h2>
       </div>
 
-
-      <div class="home__history" >
+      <div class="home__history">
         <div class="home__history-header">
           <p class="home__history-header--title">Transaction history</p>
-          <router-link class="home__history-header--link" v-if="$store.state.exchangeHistory.length > 0" to="/history"
+          <router-link
+            class="home__history-header--link"
+            v-if="$store.state.exchangeHistory.length > 0"
+            to="/history"
             >See All</router-link
           >
         </div>
 
-        <p class="home__history--text" v-if="$store.state.exchangeHistory.length == 0">It looks like you don't have any transaction...</p>
-
-
-
-        <div class="home__history-box" v-if="$store.state.exchangeHistory.length > 0">
-        <history-item 
-          v-for="item in this.$store.state.exchangeHistory.slice(0, 3)"
-          :key="item.inputAmount"
+        <p
+          class="home__history--text"
+          v-if="$store.state.exchangeHistory.length == 0"
         >
-         <template v-slot:date>
-      {{item.date}}
-    </template>
+          It looks like you don't have any transaction...
+        </p>
 
-    <template v-slot:firstCurrencyImage>
-    <img class="dupa" :src="require('../../../public/UI/' + item.firstCurrency + '.png')" alt="">
-    </template>
-    <template v-slot:firstCurrencyValue>
-    {{item.inputAmount}}
-    </template>
-    <template v-slot:firstCurrency>
-      {{item.firstCurrency}} 
-    </template>
+        <div
+          class="home__history-box"
+          v-if="$store.state.exchangeHistory.length > 0"
+        >
+          <history-item
+            v-for="item in this.$store.state.exchangeHistory.slice(0, 3)"
+            :key="item.inputAmount"
+          >
+            <template v-slot:date>
+              {{ item.date }}
+            </template>
 
+            <template v-slot:firstCurrencyImage>
+              <img
+                class="dupa"
+                :src="
+                  require('../../../public/UI/' + item.firstCurrency + '.png')
+                "
+                alt=""
+              />
+            </template>
+            <template v-slot:firstCurrencyValue>
+              {{ item.inputAmount }}
+            </template>
+            <template v-slot:firstCurrency>
+              {{ item.firstCurrency }}
+            </template>
 
-    <template v-slot:secondCurrencyImage>
-    <img :src="require('../../../public/UI/' + item.secondCurrency + '.png')" alt="">
-    </template>
-    <template v-slot:secondCurrencyValue>
-    {{item.resultAmount.toFixed(2)}}
-    </template>
-    <template v-slot:secondCurrency>
-      {{item.secondCurrency}}
-    </template>
-        </history-item>
+            <template v-slot:secondCurrencyImage>
+              <img
+                :src="
+                  require('../../../public/UI/' + item.secondCurrency + '.png')
+                "
+                alt=""
+              />
+            </template>
+            <template v-slot:secondCurrencyValue>
+              {{ item.resultAmount.toFixed(2) }}
+            </template>
+            <template v-slot:secondCurrency>
+              {{ item.secondCurrency }}
+            </template>
+          </history-item>
         </div>
-
       </div>
     </div>
   </div>
@@ -76,13 +93,16 @@
     font-weight: 600;
   }
   &__wallet {
-    
-    background: rgb(140,57,36);
-    background: linear-gradient(180deg, rgba(140,57,36,1) 0%, rgba(210,56,56,1) 50%, rgba(125,66,66,1) 100%);
+    background: rgb(255, 98, 0);
+    background: linear-gradient(
+      45deg,
+      rgb(226, 115, 46) 0%,
+      rgb(224, 41, 130) 100%
+    );
     border-radius: 20px;
-    padding: 0.2rem 4rem;
+    padding: 0.2rem 2rem;
     &-title {
-      color: #aca4a4;
+      color: #ffffff;
       display: flex;
       justify-content: space-between;
     }
@@ -101,21 +121,21 @@
       &--link {
         color: #000;
       }
-      &--title{
-            font-size: 20px;
-    font-weight: 600;
+      &--title {
+        font-size: 20px;
+        font-weight: 600;
       }
     }
   }
 }
 
-@media (min-width: 768px){
-.home {
-  &__wallet {
-    width: 300px;
-    padding: 0.8rem 4rem;
-}
-}
+@media (min-width: 768px) {
+  .home {
+    &__wallet {
+      width: 300px;
+      padding: 0.8rem 4rem;
+    }
+  }
 }
 </style>
 <script>
