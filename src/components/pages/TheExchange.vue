@@ -39,7 +39,7 @@
           />
         </div>
 
-        <img class="exchange__img" src="../../assets/UI/swap.png" alt="" />
+        <img class="exchange__img" src="../../assets/UI/swap.png" alt="exchange arrows icon" />
 
         <div class="exchange__box">
           <select
@@ -188,29 +188,29 @@ export default {
   &__box {
     display: flex;
     justify-content: space-around;
-    left: 0;
     height: 40px;
+    left: 0;
   }
   &__select {
     width: 120px;
     left: 0;
   }
   &__button {
+    width: 100%;
+    margin-left: 1rem;
+    border: 0;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    border: 0;
-    width: 100%;
-    margin-left: 1rem;
   }
   &__input {
-    margin: 0;
-    padding: 0;
     width: 100%;
     margin-left: 1rem;
+    margin: 0;
+    padding: 0;
   }
   &__title {
-    font-weight: 600;
     text-align: left;
+    font-weight: 600;
   }
   &__error {
     color: rgb(255, 0, 0);
@@ -248,8 +248,8 @@ export default {
       font-size: 24px;
     }
     &-heading {
-      font-size: 12px;
       align-self: start;
+      font-size: 12px;
       color: #aca4a4;
     }
     &-rate {
@@ -258,11 +258,11 @@ export default {
   }
 }
 .accept-button {
-  border: 1px solid rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
   align-self: center;
   width: 50%;
   height: 50px;
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 </style>

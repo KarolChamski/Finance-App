@@ -121,5 +121,9 @@ export default createStore({
       state.exchangeHistory.unshift(historyItem)
 
     },
+
+    
   },
+
+
 });

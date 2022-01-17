@@ -1,14 +1,14 @@
 <template>
   <div class="header">
     <div class="wrapper">
-        <h1 class="header__title">Hello World</h1>
+        <h1 class="header__title">Finance App</h1>
       <div class="header__container">
         <div class="header__menu">
           <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
                 src="../../assets/UI/home.png"
-                alt="Powrót na stronę główną"
+                alt="Return to home page"
               />
             <router-link to="/home">
               <p class="header__menu-item-text">Home</p>
@@ -19,7 +19,7 @@
               <img
                 class="header__menu-item-img"
                 src="../../assets/UI/repeat.png"
-                alt="Wymień waluty"
+                alt="Currency exchange page"
               />
             <router-link to="/exchange">
               <p class="header__menu-item-text">Currency Exchange</p>
@@ -30,7 +30,7 @@
               <img
                 class="header__menu-item-img"
                 src="../../assets/UI/history.png"
-                alt="Historia Transakcji"
+                alt="Transaction history page"
               />
             <router-link to="/history">
               <p class="header__menu-item-text">Transaction History</p>
@@ -47,9 +47,9 @@
   display: none;
   position: relative;
   width: 300px;
+  height: 100vh;
   top: 0;
   left: 0;
-  height: 100vh;
   background-color: rgb(0, 0, 0);
   &__container {
     display: flex;

@@ -2,17 +2,17 @@
   <div class="menu">
     <button class="menu__item">
       <router-link to="/home"
-        ><img class="menu__item-img" src="../../assets/UI/home.png" alt="Powrót na stronę główną"
+        ><img class="menu__item-img" src="../../assets/UI/home.png" alt="Return to home page logo"
       /> <p class="menu__item-text">Home</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/exchange"
-        ><img class="menu__item-img" src="../../assets/UI/repeat.png" alt="Wymiana walut"
+        ><img class="menu__item-img" src="../../assets/UI/repeat.png" alt="Currency Exchange page logo"
       /> <p class="menu__item-text">Exchange</p> </router-link>
     </button>
     <button class="menu__item">
       <router-link to="/history"
-        ><img class="menu__item-img" src="../../assets/UI/history.png" alt="Historia transakcji"
+        ><img class="menu__item-img" src="../../assets/UI/history.png" alt="Transaction history page logo"
       /> <p class="menu__item-text">History</p> </router-link>
     </button>
   </div>
@@ -28,9 +28,9 @@
   bottom: 0;
   background-color: rgb(0, 0, 0);
   &__item {
+    height: 50px;
     background: none;
     border: none;
-    height: 50px;
     &-img {
       color: rgb(255, 255, 255);
     }

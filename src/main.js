@@ -12,7 +12,6 @@ const router = createRouter({
       { path: '/home', component: Home, alias: '/' },
       { path: '/history', component: History },
       { path: '/exchange', component: Exchange },
-
     ],
     linkActiveClass: "active",
   });

@@ -5,7 +5,7 @@
       <div class="home__wallet">
         <div class="home__wallet-title">
           <p>Current Balance</p>
-          <img src="../../assets/UI/mastercard_logo.png" alt="" />
+          <img src="../../assets/UI/mastercard_logo.png" alt="mastercard logo" />
         </div>
         <h2 class="home__wallet-balance" @click="getCurrentRate">
           {{ "PLN " + $store.getters.fixedPlnAccount }}
@@ -50,11 +50,10 @@
 
             <template v-slot:firstCurrencyImage>
               <img
-                class="dupa"
                 :src="
                   require('../../../public/UI/' + item.firstCurrency + '.png')
                 "
-                alt=""
+                 :alt="item.firstCurrency + 'flag'"
               />
             </template>
             <template v-slot:firstCurrencyValue>
@@ -69,7 +68,7 @@
                 :src="
                   require('../../../public/UI/' + item.secondCurrency + '.png')
                 "
-                alt=""
+                :alt="item.secondCurrency + 'flag'"
               />
             </template>
             <template v-slot:secondCurrencyValue>
@@ -93,23 +92,23 @@
     font-weight: 600;
   }
   &__wallet {
+    padding: 0.2rem 2rem;
+    border-radius: 20px;
     background: rgb(255, 98, 0);
     background: linear-gradient(
       45deg,
       rgb(226, 115, 46) 0%,
       rgb(224, 41, 130) 100%
     );
-    border-radius: 20px;
-    padding: 0.2rem 2rem;
     &-title {
-      color: #ffffff;
       display: flex;
       justify-content: space-between;
+      color: #ffffff;
     }
     &-balance {
-      color: rgb(255, 255, 255);
-      font-weight: 300;
       text-align: left;
+      font-weight: 300;
+      color: rgb(255, 255, 255);
     }
   }
   &__history {

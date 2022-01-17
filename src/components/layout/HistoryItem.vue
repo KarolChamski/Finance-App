@@ -25,7 +25,7 @@
     </div>
 
     <div class="item">
-      <img src="../../assets/UI/swap_horiz.png" alt="" />
+      <img src="../../assets/UI/swap_horiz.png" alt="replace arrows icon" />
     </div>
 
     <div class="item">
@@ -52,9 +52,9 @@
 }
 .history-date {
   display: flex;
+  margin-top: 1rem;
   font-size: 12px;
   color: #949292;
-  margin-top: 1rem;
 }
 main {
   display: flex;
@@ -64,9 +64,8 @@ main {
   display: flex;
   align-items: center;
   &__value {
-    font-weight: 600;
     margin-right: 0.2rem;
-
+    font-weight: 600;
   }
   &__image{
     margin-right: 0.6rem;
