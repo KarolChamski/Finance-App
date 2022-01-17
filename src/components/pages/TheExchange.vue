@@ -261,6 +261,7 @@ export default {
   align-self: center;
   width: 50%;
   height: 50px;
+  margin-bottom: 1rem;
   border: 1px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
