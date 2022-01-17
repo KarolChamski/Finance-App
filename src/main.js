@@ -10,6 +10,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
       { path: '/home', component: Home, alias: '/' },
+      { path: '/', redirect: '/home'},
       { path: '/history', component: History },
       { path: '/exchange', component: Exchange },
     ],
