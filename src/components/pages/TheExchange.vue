@@ -194,17 +194,16 @@ export default {
   &__select {
     width: 120px;
     left: 0;
+    margin-right: 1rem;
   }
   &__button {
     width: 100%;
-    margin-left: 1rem;
     border: 0;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
   }
   &__input {
     width: 100%;
-    margin-left: 1rem;
     margin: 0;
     padding: 0;
   }
@@ -240,6 +239,7 @@ export default {
   &__box {
     display: flex;
     flex-direction: column;
+    padding-bottom: 1rem;
 
     &-bold {
       font-weight: 600;
@@ -261,7 +261,6 @@ export default {
   align-self: center;
   width: 50%;
   height: 50px;
-  margin-bottom: 1rem;
   border: 1px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);

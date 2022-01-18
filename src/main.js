@@ -9,8 +9,7 @@ import store from './store'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-      { path: '/home', component: Home, alias: '/' },
-      { path: '/', redirect: '/home'},
+      { path: '/home', component: Home, alias: '/Finance-App/' },
       { path: '/history', component: History },
       { path: '/exchange', component: Exchange },
     ],
