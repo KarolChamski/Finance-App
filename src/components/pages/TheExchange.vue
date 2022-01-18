@@ -184,6 +184,7 @@ export default {
 .exchange {
   &__img {
     margin: 1rem;
+    width: 30px;
   }
   &__box {
     display: flex;

@@ -90,6 +90,7 @@
       }
       &-img{
         margin-right: 2rem;
+        height: 30px;
       }
     }
   }

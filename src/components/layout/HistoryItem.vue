@@ -25,7 +25,7 @@
     </div>
 
     <div class="item">
-      <img src="../../assets/UI/swap_horiz.png" alt="replace arrows icon" />
+      <img class="item__icon" src="../../assets/UI/swap_horiz.png" alt="replace arrows icon" />
     </div>
 
     <div class="item">
@@ -69,6 +69,9 @@ main {
   }
   &__image{
     margin-right: 0.6rem;
+  }
+  &__icon{
+    height: 28px;
   }
 
 }

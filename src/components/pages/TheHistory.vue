@@ -19,7 +19,7 @@
         <template v-slot:firstCurrencyImage>
           <img
             :src="require('../../../public/UI/' + item.firstCurrency + '.png')"
-            :alt="item.firstCurrency + 'flag'"
+            :alt="item.firstCurrency + 'flag'" class="the-history__image"
           />
         </template>
         <template v-slot:firstCurrencyValue>
@@ -32,7 +32,7 @@
         <template v-slot:secondCurrencyImage>
           <img
             :src="require('../../../public/UI/' + item.secondCurrency + '.png')"
-            :alt="item.firstCurrency + 'flag'"
+            :alt="item.firstCurrency + 'flag'" class="the-history__image"
           />
         </template>
         <template v-slot:secondCurrencyValue>
@@ -69,6 +69,9 @@ export default {
   }
   &__empty {
     text-align: left;
+  }
+  &__image{
+    height: 28px;
   }
 }
 </style>

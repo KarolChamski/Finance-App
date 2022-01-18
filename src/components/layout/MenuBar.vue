@@ -33,6 +33,7 @@
     border: none;
     &-img {
       color: rgb(255, 255, 255);
+      height: 22px;
     }
     &-text{
       margin: 0;
