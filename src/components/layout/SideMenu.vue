@@ -1,41 +1,41 @@
 <template>
   <div class="header">
     <div class="wrapper">
-        <h1 class="header__title">Finance App</h1>
+      <h1 class="header__title">Finance App</h1>
       <div class="header__container">
         <div class="header__menu">
-          <button class="header__menu-item">
+          <router-link to="/home">
+            <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/home.png"
+                src="../../assets/UI/home.svg"
                 alt="Return to home page"
               />
-            <router-link to="/home">
               <p class="header__menu-item-text">Home</p>
-            </router-link>
-          </button>
+            </button>
+          </router-link>
 
-          <button class="header__menu-item">
+          <router-link to="/exchange">
+            <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/repeat.png"
+                src="../../assets/UI/repeat.svg"
                 alt="Currency exchange page"
               />
-            <router-link to="/exchange">
               <p class="header__menu-item-text">Currency Exchange</p>
-            </router-link>
-          </button>
+            </button>
+          </router-link>
 
-          <button class="header__menu-item">
+          <router-link to="/history">
+            <button class="header__menu-item">
               <img
                 class="header__menu-item-img"
-                src="../../assets/UI/history.png"
+                src="../../assets/UI/history.svg"
                 alt="Transaction history page"
               />
-            <router-link to="/history">
               <p class="header__menu-item-text">Transaction History</p>
-            </router-link>
-          </button>
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -85,12 +85,13 @@
       display: flex;
       align-items: center;
       padding: 2rem;
-      &-text{
+      cursor: pointer;
+      &-text {
         margin: 0;
       }
-      &-img{
+      &-img {
         margin-right: 2rem;
-        height: 30px;
+        height: 20px;
       }
     }
   }

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue";
-import MenuBar from "./components/layout/MenuBar.vue";
+import TheHeader from "./components/layout/SideMenu.vue";
+import MenuBar from "./components/layout/MobileBar.vue";
 
 export default {
   components: {
@@ -45,6 +45,8 @@ a {
 .active {
   font-weight: 600;
   color: rgb(226, 115, 46);
+  filter: invert(60%) sepia(62%) saturate(1400%) hue-rotate(341deg)
+    brightness(92%) contrast(91%);
 }
 .app {
   display: flex;
@@ -59,7 +61,6 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width: 1024px) {
   .active {
-    border-bottom: 1px solid rgb(226, 115, 46);
     font-weight: normal;
   }
 }

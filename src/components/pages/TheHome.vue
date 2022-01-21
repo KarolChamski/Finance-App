@@ -5,18 +5,22 @@
       <div class="home__wallet">
         <div class="home__wallet-title">
           <p>Current Balance</p>
-          <img class="home__wallet-logo" src="../../assets/UI/mastercard_logo.png" alt="mastercard logo" />
+          <img
+            class="home__wallet-logo"
+            src="../../assets/UI/mastercard_logo.png"
+            alt="mastercard logo"
+          />
         </div>
         <div class="home__wallet-box">
-        <p class="home__wallet-balance" @click="getCurrentRate">
-          {{ "PLN " + $store.getters.fixedPlnAccount }}
-        </p>
-        <p class="home__wallet-balance" @click="getCurrentRate">
-          {{ "€ " + $store.getters.fixedEurAccount }}
-        </p>
-        <p class="home__wallet-balance" @click="getCurrentRate">
-          {{ "$ " + $store.getters.fixedUsdAccount }}
-        </p>
+          <p class="home__wallet-balance" @click="getCurrentRate">
+            {{ "PLN " + $store.getters.fixedPlnAccount }}
+          </p>
+          <p class="home__wallet-balance" @click="getCurrentRate">
+            {{ "€ " + $store.getters.fixedEurAccount }}
+          </p>
+          <p class="home__wallet-balance" @click="getCurrentRate">
+            {{ "$ " + $store.getters.fixedUsdAccount }}
+          </p>
         </div>
       </div>
 
@@ -55,7 +59,8 @@
                 :src="
                   require('../../../public/UI/' + item.firstCurrency + '.png')
                 "
-                 :alt="item.firstCurrency + 'flag'" class="home__history--image"
+                :alt="item.firstCurrency + 'flag'"
+                class="home__history--image"
               />
             </template>
             <template v-slot:firstCurrencyValue>
@@ -70,7 +75,8 @@
                 :src="
                   require('../../../public/UI/' + item.secondCurrency + '.png')
                 "
-                :alt="item.secondCurrency + 'flag'" class="home__history--image"
+                :alt="item.secondCurrency + 'flag'"
+                class="home__history--image"
               />
             </template>
             <template v-slot:secondCurrencyValue>
@@ -113,7 +119,7 @@
       color: #ffffff;
       margin-top: 1.2rem;
     }
-    &-box{
+    &-box {
       margin-bottom: 1.6rem;
     }
     &-balance {
@@ -124,21 +130,19 @@
       margin: 0.3rem 0;
       letter-spacing: 1px;
     }
-    &-logo{
+    &-logo {
       height: 50px;
     }
-
-
   }
   &__history {
     margin-bottom: 60px;
     width: 100%;
-      &--image{
-        height: 28px;
-      }
-      &--text{
-        margin: 0;
-      }
+    &--image {
+      height: 28px;
+    }
+    &--text {
+      margin: 0;
+    }
     &-header {
       display: flex;
       align-items: center;

@@ -39,7 +39,11 @@
           />
         </div>
 
-        <img class="exchange__img" src="../../assets/UI/swap.png" alt="exchange arrows icon" />
+        <img
+          class="exchange__img"
+          src="../../assets/UI/swap.png"
+          alt="exchange arrows icon"
+        />
 
         <div class="exchange__box">
           <select
@@ -196,6 +200,7 @@ export default {
     width: 120px;
     left: 0;
     margin-right: 1rem;
+    cursor: pointer;
   }
   &__button {
     width: 100%;
@@ -203,11 +208,13 @@ export default {
     font-size: 16px;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+    cursor: pointer;
   }
   &__input {
     width: 100%;
     margin: 0;
     padding: 0;
+    cursor: pointer;
   }
   &__title {
     text-align: left;
@@ -247,8 +254,8 @@ export default {
       font-weight: 600;
     }
     &-text {
-      font-size: 24px;
       margin-top: 0.5rem;
+      font-size: 24px;
     }
     &-heading {
       align-self: start;
@@ -269,5 +276,6 @@ export default {
   color: rgb(0, 0, 0);
   font-size: 16px;
   background-color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 </style>
