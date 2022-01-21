@@ -183,13 +183,13 @@ export default {
 }
 .exchange {
   &__img {
-    margin: 1rem;
+    margin: 0.6rem;
     width: 30px;
   }
   &__box {
     display: flex;
     justify-content: space-around;
-    height: 40px;
+    height: 45px;
     left: 0;
   }
   &__select {
@@ -248,6 +248,7 @@ export default {
     }
     &-text {
       font-size: 24px;
+      margin-top: 0.5rem;
     }
     &-heading {
       align-self: start;
