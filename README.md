@@ -1,12 +1,12 @@
 # Finance App :dollar: :chart: 
-Finance app which use API connection to exchange your money by current rate.
-App made with Vue.js
-Current balance is stored in vuex store and use vuex features to balance modification.
-A basic vue routing & active link has been applied.
-History page store all done transactions.
+Finance app which use API connection to exchange your money by current rate.<br/>
+App made with Vue.js<br/>
+Current balance is stored in vuex store and use vuex features to balance modification.<br/>
+A basic vue routing & active link has been applied.<br/>
+History page store all done transactions.<br/>
 
 ### Technologies used
-I created this App with Vue 3, using vuex and vue routing.
+I created this App with Vue 3, using vuex and vue routing.<br/>
 Styling was made with SCSS pre-processor.
 
 ## DEMO
