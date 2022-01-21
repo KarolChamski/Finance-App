@@ -111,6 +111,10 @@
       display: flex;
       justify-content: space-between;
       color: #ffffff;
+      margin-top: 1rem;
+    }
+    &-box{
+      margin-bottom: 1rem;
     }
     &-balance {
       text-align: left;
@@ -139,6 +143,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-top: 1rem;
       &--link {
         color: #000;
       }
