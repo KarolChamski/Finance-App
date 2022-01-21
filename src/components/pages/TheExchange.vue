@@ -200,6 +200,7 @@ export default {
   &__button {
     width: 100%;
     border: 0;
+    font-size: 16px;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
   }
@@ -254,6 +255,7 @@ export default {
       color: #aca4a4;
     }
     &-rate {
+      margin-top: 0;
       color: #aca4a4;
     }
   }
@@ -264,6 +266,7 @@ export default {
   height: 50px;
   border: 1px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
+  font-size: 16px;
   background-color: rgb(255, 255, 255);
 }
 </style>

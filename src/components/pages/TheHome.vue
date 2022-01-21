@@ -111,10 +111,10 @@
       display: flex;
       justify-content: space-between;
       color: #ffffff;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
     }
     &-box{
-      margin-bottom: 1rem;
+      margin-bottom: 1.6rem;
     }
     &-balance {
       text-align: left;
